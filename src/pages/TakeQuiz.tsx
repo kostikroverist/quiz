@@ -46,26 +46,27 @@ const TakeQuiz: React.FC = () => {
   };
 
   const calculateResult = () => {
-    const scores = quiz?.questions.map((question, index) => {
-      if (question.type === "text") {
-        return answers[index] === question.answers[0]?.correctAnswer
-          ? question.answers[0].pointsPerQuestion
-          : 0;
-      } else {
-        return question.answers.reduce((acc, answer, answerIndex) => {
-          if (
-            Array.isArray(answers[index]) &&
-            (answers[index] as number[]).includes(answerIndex) &&
-            answer.isCorrect
-          ) {
-            return acc + answer.pointsPerQuestion;
-          }
-          return acc;
-        }, 0);
-      }
-    });
+    const scores =
+      quiz?.questions.map((question, index) => {
+        if (question.type === "text") {
+          return answers[index] === question.answers[0]?.correctAnswer
+            ? Number(question.answers[0].pointsPerQuestion)
+            : 0;
+        } else {
+          return question.answers.reduce((acc, answer, answerIndex) => {
+            if (
+              Array.isArray(answers[index]) &&
+              (answers[index] as number[]).includes(answerIndex) &&
+              answer.isCorrect
+            ) {
+              return acc + Number(answer.pointsPerQuestion);
+            }
+            return acc;
+          }, 0);
+        }
+      }) || [];
 
-    navigate("/result", { state: { scores: scores } });
+    navigate("/result", { state: { scores } });
   };
 
   const renderQuestion = (question: Question, index: number) => {
