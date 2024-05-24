@@ -9,20 +9,27 @@ import Spinner from "../components/Spinner/Spinner";
 import BackButton from "../components/Buttons/BackButton";
 
 const AddQuiz: React.FC = () => {
-  const { control, register, handleSubmit, watch, setValue, reset } =
-    useForm<QuizFormValues>({
-      defaultValues: {
-        name: "",
-        timer: 31,
-        questions: [
-          {
-            question: "",
-            type: "select",
-            answers: [{ value: "", isCorrect: false, pointsPerQuestion: 0 }],
-          },
-        ],
-      },
-    });
+  const {
+    control,
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    reset,
+    formState: { errors },
+  } = useForm<QuizFormValues>({
+    defaultValues: {
+      name: "",
+      timer: 31,
+      questions: [
+        {
+          question: "",
+          type: "select",
+          answers: [{ value: "", isCorrect: false, pointsPerQuestion: 0 }],
+        },
+      ],
+    },
+  });
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -83,7 +90,11 @@ const AddQuiz: React.FC = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="p-4 space-y-4">
         <div>
           <label className="block">Name Quiz</label>
-          <input {...register("name")} className="border p-2 w-full" />
+          <input
+            {...register("name", { required: "Quiz name is required" })}
+            className="border p-2 w-full"
+          />
+          {errors.name && <p className="text-red-500">{errors.name.message}</p>}
         </div>
         <div>
           <label className="block">Have timer?</label>
@@ -105,9 +116,16 @@ const AddQuiz: React.FC = () => {
               )}
             </div>
             <input
-              {...register(`questions.${index}.question`)}
+              {...register(`questions.${index}.question`, {
+                required: "Question is required",
+              })}
               className="border p-2 w-full"
             />
+            {errors.questions?.[index]?.question && (
+              <p className="text-red-500">
+                {errors.questions[index]?.question?.message}
+              </p>
+            )}
             <div>
               <label>What type answer</label>
               <Controller
@@ -148,7 +166,7 @@ const AddQuiz: React.FC = () => {
         >
           + Add Question
         </button>
-        <br/>
+        <br />
         <button type="submit" className="bg-blue-500 text-white p-2">
           Submit
         </button>
