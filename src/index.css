@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  padding-top: 5rem; /* Щоб врахувати висоту заголовка */
+  padding-bottom: 3rem; /* Щоб врахувати висоту футера */
+}

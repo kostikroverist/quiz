@@ -1,16 +1,21 @@
-import { useState } from 'react'
-import './index.css'
+import "./index.css";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./layout/Layout";
+import MainPage from "./pages/MainPage";
+import Quizs from "./pages/Quizs";
+import ManageQuiz from "./pages/ManageQuiz";
+import AddQuiz from "./pages/AddQuiz";
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div className="flex items-center justify-center h-screen bg-blue-500">
-        <h1 className="text-4xl text-white">Hello, Tailwind CSS!</h1>
-      </div>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<MainPage />} />
+        <Route path="managequiz" element={<ManageQuiz />} />
+        <Route path="addquiz" element={<AddQuiz />} />
+        <Route path="allquiz" element={<Quizs />} />
+      </Route>
+    </Routes>
+  );
 }
 
-export default App
- 
+export default App;
