@@ -6,6 +6,7 @@ import { useQuiz } from "../context/QuizContext";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import Spinner from "../components/Spinner/Spinner";
+import BackButton from "../components/Buttons/BackButton";
 
 const AddQuiz: React.FC = () => {
   const { control, register, handleSubmit, watch, setValue, reset } =
@@ -77,6 +78,7 @@ const AddQuiz: React.FC = () => {
 
   return (
     <div>
+      <BackButton />
       {loading && <Spinner />}
       <form onSubmit={handleSubmit(onSubmit)} className="p-4 space-y-4">
         <div>
@@ -146,7 +148,7 @@ const AddQuiz: React.FC = () => {
         >
           + Add Question
         </button>
-
+        <br/>
         <button type="submit" className="bg-blue-500 text-white p-2">
           Submit
         </button>

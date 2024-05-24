@@ -1,10 +1,13 @@
 import { FaPlus } from "react-icons/fa";
 import NavButton from "../components/Buttons/NavButton";
 import ListQuizzes from "../components/Quizs/ListQuizzes";
+import BackButton from "../components/Buttons/BackButton";
 
 const ManageQuiz = () => {
   return (
     <>
+      <BackButton />
+
       <div>
         <NavButton
           icon={<FaPlus size={64} />}

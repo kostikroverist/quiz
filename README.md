@@ -1,30 +1,59 @@
-# React + TypeScript + Vite
+# Quiz App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This is a quiz application built using React, React Router, and React Hook Form. It allows users to create, edit, delete quizzes, take quizzes, and search for quizzes by name. The application supports dynamic question and answer creation, marking correct answers, and provides a timer for quiz completion.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **List of Available Quizzes**: View a list of available quizzes.
+- **Create New Quiz**: Add a new quiz with customizable questions and answers.
+- **Delete Quiz**: Remove existing quizzes from the collection.
+- **Edit Quiz**: Modify existing quizzes, including changing the number of questions.
+- **Dynamic Question and Answer Creation**: Ability to add or remove questions and answers dynamically while creating or editing quizzes.
+- **Mark Correct Answer**: Specify correct answers for each question, which contributes to the final score during quiz completion.
+- **Quiz Timer**: Implement a timer for each quiz session to track completion time.
+- **Different Answer Types**: Support for various answer types such as text input, multiple choice, etc.
+- **Search for Quizzes**: Search for quizzes by name for easy access.
+- **Promise-based Delay Simulation**: Simulate delays using promises for better user experience.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tech Stack
 
-- Configure the top-level `parserOptions` property like this:
+- **React**: JavaScript library for building user interfaces.
+- **React Router**: Declarative routing for React applications.
+- **React Hook Form**: Performant, flexible, and extensible forms with easy-to-use validation.
+- **React Icons**: Library providing popular icon packs as React components.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **TypeScript**: Typed superset of JavaScript that compiles to plain JavaScript.
+- **Vite**: Fast, opinionated web dev build tool that serves your code via native ES modules.
+- **ESLint**: Pluggable JavaScript linter for identifying and fixing problems.
+- **PostCSS & Autoprefixer**: Tooling for transforming CSS with JavaScript plugins.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Getting Started
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+To run the application locally, follow these steps:
+
+1. Clone this repository. ' https://github.com/kostikroverist/quiz.git '
+2. Navigate to the project directory.
+3. Install dependencies using `npm install`.
+4. Start the development server with `npm run dev`.
+5. Open your browser and navigate to `http://localhost:5173`.
+
+## Usage
+
+- Create quizzes by navigating to the "Create Quiz" page and filling out the form.
+- Take quizzes by selecting them from the list and answering the questions within the allotted time.
+- Edit or delete quizzes by accessing the appropriate actions from the quiz list.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit issues and pull requests.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+Feel free to modify and expand upon this template as needed!
