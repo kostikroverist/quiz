@@ -1,8 +1,11 @@
+import ListQuizzes from "../components/Quizs/ListQuizzes";
 
 const Quizs = () => {
   return (
-    <div>AllQuiz</div>
-  )
-}
+    <div>
+      <ListQuizzes />
+    </div>
+  );
+};
 
-export default Quizs
+export default Quizs;

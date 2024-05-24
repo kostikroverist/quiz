@@ -1,10 +1,10 @@
 import { FC, ReactNode } from "react";
-import { Link } from "react-router-dom"; // Імпорт компонента Link для маршрутизації
+import { Link } from "react-router-dom";
 
 type PropsButton = {
   text: string;
   icon?: ReactNode;
-  to: string; 
+  to: string;
 };
 
 const NavButton: FC<PropsButton> = ({ text, icon, to }) => {

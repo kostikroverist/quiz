@@ -5,6 +5,8 @@ import MainPage from "./pages/MainPage";
 import Quizs from "./pages/Quizs";
 import ManageQuiz from "./pages/ManageQuiz";
 import AddQuiz from "./pages/AddQuiz";
+import TakeQuiz from "./pages/TakeQuiz";
+import Result from "./pages/Result";
 function App() {
   return (
     <Routes>
@@ -13,6 +15,8 @@ function App() {
         <Route path="managequiz" element={<ManageQuiz />} />
         <Route path="addquiz" element={<AddQuiz />} />
         <Route path="allquiz" element={<Quizs />} />
+        <Route path="takequiz" element={<TakeQuiz />} />
+        <Route path="result" element={<Result />} />
       </Route>
     </Routes>
   );
