@@ -1,5 +1,6 @@
 import { FaPlus } from "react-icons/fa";
 import NavButton from "../components/Buttons/NavButton";
+import ListQuizzes from "../components/Quizs/ListQuizzes";
 
 const ManageQuiz = () => {
   return (
@@ -13,7 +14,9 @@ const ManageQuiz = () => {
       </div>
       <div>
         <h3 className="text-center font-bold text-3xl">List of Quiz</h3>
-        <div></div>
+        <div>
+          <ListQuizzes />
+        </div>
       </div>
     </>
   );

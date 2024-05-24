@@ -2,7 +2,7 @@ export interface Answer {
   value: string;
   isCorrect: boolean;
   pointsPerQuestion: number;
-  correctAnswer?: string; 
+  correctAnswer?: string;
 }
 
 export interface Question {
@@ -12,6 +12,7 @@ export interface Question {
 }
 
 export interface QuizFormValues {
+  id: string;
   name: string;
   timer: number;
   questions: Question[];

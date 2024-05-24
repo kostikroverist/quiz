@@ -1,9 +1,12 @@
+import React, { useEffect } from "react";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { QuizFormValues } from "../interface/Quiz";
 import AnswerFields from "./AnswerFields";
+import { useQuiz } from "../context/QuizContext";
+import { useNavigate } from "react-router-dom";
 
 const AddQuiz: React.FC = () => {
-  const { control, register, handleSubmit, watch, setValue } =
+  const { control, register, handleSubmit, watch, setValue, reset } =
     useForm<QuizFormValues>({
       defaultValues: {
         name: "",
@@ -12,7 +15,7 @@ const AddQuiz: React.FC = () => {
           {
             question: "",
             type: "select",
-            answers: [],
+            answers: [{ value: "", isCorrect: false, pointsPerQuestion: 0 }],
           },
         ],
       },
@@ -24,6 +27,23 @@ const AddQuiz: React.FC = () => {
   });
 
   const questions = watch("questions");
+  const navigate = useNavigate();
+  const { quizId, setQuizId } = useQuiz();
+
+  useEffect(() => {
+    if (quizId) {
+      const storedQuizzes = localStorage.getItem("quizzes");
+      if (storedQuizzes) {
+        const quizzes = JSON.parse(storedQuizzes);
+        const quizToEdit = quizzes.find(
+          (quiz: QuizFormValues) => quiz.id === quizId
+        );
+        if (quizToEdit) {
+          reset(quizToEdit);
+        }
+      }
+    }
+  }, [quizId, reset]);
 
   const handleTypeChange = (
     e: React.ChangeEvent<HTMLSelectElement>,
@@ -38,8 +58,21 @@ const AddQuiz: React.FC = () => {
   };
 
   const onSubmit = (data: QuizFormValues) => {
-    console.log(data);
-    //  save to localStorage
+    const storedQuizzes = localStorage.getItem("quizzes");
+    let quizzes = storedQuizzes ? JSON.parse(storedQuizzes) : [];
+
+    if (quizId) {
+      quizzes = quizzes.map((quiz: QuizFormValues) =>
+        quiz.id === quizId ? data : quiz
+      );
+    } else {
+      data.id = new Date().toISOString();
+      quizzes.push(data);
+    }
+
+    localStorage.setItem("quizzes", JSON.stringify(quizzes));
+    setQuizId(null);
+    navigate(-1);
   };
 
   return (
@@ -104,14 +137,14 @@ const AddQuiz: React.FC = () => {
           append({
             question: "",
             type: "select",
-            answers: [{ value: "", isCorrect: false, pointsPerQuestion: 1 }],
+            answers: [{ value: "", isCorrect: false, pointsPerQuestion: 0 }],
           });
         }}
         className="text-blue-500"
       >
         + Add Question
       </button>
-        <div></div>
+
       <button type="submit" className="bg-blue-500 text-white p-2">
         Submit
       </button>
